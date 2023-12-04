@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>Etch A Sketch</title>
+    </head>
+    <body>
+        <p>Enter a grid size (max. 100)</p>
+        <input type="number">
+        <button>Submit</button>
+        <div class="box">
+            
+        </div>
+        <script>
+let box = document.querySelector('.box');
+let input = document.querySelector('input');
+let btn = document.querySelector('button');
+let grid = 16;
+
+for (i = 0; i < 256; i++) {
+    let div = document.createElement('div');
+    div.classList.add('div');
+    div.style.height = 37.5 + 'px';
+    div.style.width = 37.5 + 'px';
+    div.addEventListener('mouseover', hover)
+    function hover() {
+        div.classList.add('hover');
+    }
+    box.appendChild(div);
+}
+
+function showGrid() {
+    grid = input.value;
+    while (box.firstChild) {
+        box.removeChild(box.lastChild);
+    }
+    if (grid < 101) {
+        for (i = 0; i < (grid * grid); i++) {
+            let div = document.createElement('div');
+            div.classList.add('div');
+            div.style.height = 600 / grid + 'px';
+            div.style.width = 600 / grid + 'px';
+            div.addEventListener('mouseover', hover)
+            function hover() {
+                div.classList.add('hover');
+            }
+            box.appendChild(div);
+        }
+    } else alert('Cannot generate a grid with a side > 100')
+    
+
+}
+
+btn.addEventListener('click', showGrid)
+        </script>
+    </body>
+</html>
